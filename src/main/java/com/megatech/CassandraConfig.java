@@ -10,8 +10,8 @@ import org.springframework.data.cassandra.config.SchemaAction;
 import org.springframework.data.cassandra.config.java.AbstractCassandraConfiguration;
 import org.springframework.data.cassandra.repository.config.EnableCassandraRepositories;
 
-@Configuration
-@EnableCassandraRepositories(basePackages = { "com.megatech" })
+//@Configuration
+//@EnableCassandraRepositories(basePackages = { "com.megatech" })
 public class CassandraConfig extends AbstractCassandraConfiguration {
 
 	@Value("${spring.data.cassandra.contact-points}")

@@ -2,9 +2,8 @@ package com.megatech.model;
 
 import org.springframework.data.cassandra.mapping.Column;
 import org.springframework.data.cassandra.mapping.PrimaryKey;
-import org.springframework.data.cassandra.mapping.Table;
 
-@Table(value = "payload")
+//@Table(value = "payload")
 public class Payload {
 
 	@PrimaryKey("id")

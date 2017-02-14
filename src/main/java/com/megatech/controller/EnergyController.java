@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.megatech.model.Payload;
+import com.megatech.model.EnergyIot;
 import com.megatech.service.EnergyService;
 
 @RestController
@@ -28,15 +28,15 @@ public class EnergyController {
 	}
 	
 	// ################ get Entire Tag ####################
-		@RequestMapping(value = "/getTag", method = RequestMethod.GET)
-		public Iterable<Payload> getEntireTAg() {
+		@RequestMapping(value = "/gettimedata", method = RequestMethod.GET)
+		public Iterable<EnergyIot> getTimeData() {
 			System.out.println("Get Entire Tag");
-			return energyService.getAllTag();
+			return energyService.getTimeData();
 		}
 
 	// ################ get Tag by Id ####################
-	@RequestMapping(value = "/getTag/{tagId}", method = RequestMethod.GET)
-	public Iterable<Payload> getTagsById(@PathVariable List<Long> tagId) {
+	@RequestMapping(value = "/gettag/{tagId}", method = RequestMethod.GET)
+	public Iterable<EnergyIot> getTagsById(@PathVariable List<?> tagId) {
 		System.out.println("Get Tag By Given ID");
 		return energyService.getTag(tagId);
 	}
