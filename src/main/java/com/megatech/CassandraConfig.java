@@ -6,15 +6,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cassandra.config.CassandraCqlClusterFactoryBean;
 import org.springframework.cassandra.core.keyspace.CreateKeyspaceSpecification;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.cassandra.config.SchemaAction;
 import org.springframework.data.cassandra.config.java.AbstractCassandraConfiguration;
-import org.springframework.data.cassandra.repository.config.EnableCassandraRepositories;
 
-//@Configuration
+@Configuration
+@PropertySource(value = { "classpath:cassandra.properties" })
 //@EnableCassandraRepositories(basePackages = { "com.megatech" })
 public class CassandraConfig extends AbstractCassandraConfiguration {
 
-	@Value("${spring.data.cassandra.contact-points}")
+	@Value("${cassandra.contactpoints}")
 	private String cassandraContactpoints;
 
 	// @Value("${spring.data.cassandra.username}")
@@ -23,22 +24,33 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
 	// @Value("${spring.data.cassandra.password}")
 	// private String password;
 
-	@Value("${spring.data.cassandra.keyspace-name}")
-	private String KEYSPACE_NAME ;
+	@Value("${cassandra.keyspace}")
+	private String KEYSPACE_NAME;
 
-	@Value("${spring.data.cassandra.schema-action}")
-	private String KEYSPACE_ACTION ;
+	@Value("${cassandra.schema-action}")
+	private String KEYSPACE_ACTION;
 
-	
-	
+	@Value("${cassandra.port}")
+	private String PORT;
+
+
 	public CassandraConfig() {
 		super();
-		System.out.println("Hi Cassandra Config:::::::"+KEYSPACE_NAME);
+		System.out.println("Hi Cassandra Config:::::::" + KEYSPACE_NAME);
 	}
 
 	@Override
 	public String getKeyspaceName() {
 		return KEYSPACE_NAME;
+	}
+
+	@Override
+	public String getContactPoints() {
+		return cassandraContactpoints;
+	}
+
+	private int getPortNumber() {
+		return Integer.parseInt(PORT);
 	}
 
 	@Override
@@ -49,6 +61,8 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
 				.withSimpleReplication(1);
 
 		cluster.setKeyspaceCreations(Collections.singletonList(keyspaceSpecification));
+		cluster.setPort(getPortNumber());
+		cluster.setContactPoints(getContactPoints());
 
 		return cluster;
 	}

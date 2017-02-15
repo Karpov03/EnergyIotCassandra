@@ -18,9 +18,9 @@ import org.springframework.data.cassandra.repository.config.EnableCassandraRepos
 
 
 
-@Configuration
-@PropertySource(value = { "classpath:cassandra.properties" })
-@EnableCassandraRepositories(basePackages = { "com.megatech" })
+//@Configuration
+//@PropertySource(value = { "classpath:cassandra.properties" })
+//@EnableCassandraRepositories(basePackages = { "com.megatech" })
 public class CassandraUtil {
 
 	/**
@@ -84,7 +84,7 @@ public class CassandraUtil {
 		cassandraSessionFactoryBean.setCluster(cluster().getObject());
 		cassandraSessionFactoryBean.setKeyspaceName(getKeyspaceName());
 		cassandraSessionFactoryBean.setConverter(converter());
-		cassandraSessionFactoryBean.setSchemaAction(SchemaAction.NONE);
+		cassandraSessionFactoryBean.setSchemaAction(SchemaAction.CREATE);
 		return cassandraSessionFactoryBean;
 	}
 
