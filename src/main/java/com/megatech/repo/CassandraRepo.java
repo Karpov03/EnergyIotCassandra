@@ -14,7 +14,7 @@ public interface CassandraRepo extends CassandraRepository<EnergyTimeSeries> {
     Iterable<EnergyTimeSeries> findByTagid(List<Integer> tagid);
 
 	@Query("select * from energytimeseries where value in(?0) ALLOW FILTERING")
-    Iterable<EnergyTimeSeries> findByValue(List<Float> value);
+    Iterable<EnergyTimeSeries> findByDate(List<Float> value);
 	
 	
 }
