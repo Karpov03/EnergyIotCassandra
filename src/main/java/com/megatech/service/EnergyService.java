@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.megatech.model.EnergyTimeSeries;
+import com.megatech.model.EnergyTimeData;
 import com.megatech.repo.CassandraRepo;
 
 @Service
@@ -16,16 +16,17 @@ public class EnergyService {
 	CassandraRepo cassandraRepo;
 
 	@Transactional
-	public Iterable<EnergyTimeSeries> getTag(List<Integer> tagid) {
+	public Iterable<EnergyTimeData> getTag(List<Integer> tagid) {
 		return cassandraRepo.findByTagid(tagid);
-	}
-	@Transactional
-	public Iterable<EnergyTimeSeries> getValue(List<Float> value) {
-		return cassandraRepo.findByValue(value);
 	}
 
 	@Transactional
-	public Iterable<EnergyTimeSeries> getTimeData() {
+	public Iterable<EnergyTimeData> getTagByDate(List<Integer> tagid,Long startdate,Long enddate) {
+		return cassandraRepo.findByTagidInAndTimestamps(tagid, startdate, enddate);
+	}
+
+	@Transactional
+	public Iterable<EnergyTimeData> getTimeData() {
 		return cassandraRepo.findAll();
 	}
 

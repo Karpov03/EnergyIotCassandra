@@ -2,34 +2,33 @@ package com.megatech.model;
 
 import java.util.Date;
 
-import org.springframework.cassandra.core.Ordering;
 import org.springframework.cassandra.core.PrimaryKeyType;
 import org.springframework.data.cassandra.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.mapping.Table;
 
-@Table(value = "energytimeseries")
-public class EnergyTimeSeries {
+@Table(value = "energytimedata")
+public class EnergyTimeData {
 
-	@PrimaryKeyColumn(name = "energytime", ordinal = 2, type = PrimaryKeyType.PARTITIONED)
-	private Date energytime;
+	@PrimaryKeyColumn(name = "timestamps", type = PrimaryKeyType.PARTITIONED)
+	private Date timestamps;
 
-	@PrimaryKeyColumn(name = "tagid", ordinal = 0, type = PrimaryKeyType.CLUSTERED,ordering = Ordering.DESCENDING)
+	@PrimaryKeyColumn(name = "tagid")
 	private Integer tagid;
 
-	@PrimaryKeyColumn(name = "value", ordinal = 0, type = PrimaryKeyType.CLUSTERED,ordering = Ordering.DESCENDING)
+	@PrimaryKeyColumn(name = "value")
 	private float value;
 
-	public EnergyTimeSeries() {
+	public EnergyTimeData() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	public Date getEnergytime() {
-		return energytime;
+		return timestamps;
 	}
 
 	public void setEnergytime(Date energytime) {
-		this.energytime = energytime;
+		this.timestamps = energytime;
 	}
 
 	public Integer getTagid() {
@@ -48,9 +47,9 @@ public class EnergyTimeSeries {
 		this.value = value;
 	}
 
-	public EnergyTimeSeries(Date energytime, Integer tagid, float value) {
+	public EnergyTimeData(Date timestamps, Integer tagid, float value) {
 		super();
-		this.energytime = energytime;
+		this.timestamps = timestamps;
 		this.tagid = tagid;
 		this.value = value;
 	}
