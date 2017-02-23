@@ -46,7 +46,7 @@ public class EnergyController {
 	@RequestMapping(value = "/gettag/{tagid}/{startdate}/{enddate}", method = RequestMethod.GET)
 	public Iterable<EnergyTimeData> getTagByDate(@PathVariable List<Integer> tagid, @PathVariable Long startdate,
 			@PathVariable Long enddate) {
-		System.out.println("get Tag Value between Dates by tagId");
+		System.out.println("get Tag Value between Dates by tagid");
 		return energyService.getTagByDate(tagid, startdate, enddate);
 	}
 
