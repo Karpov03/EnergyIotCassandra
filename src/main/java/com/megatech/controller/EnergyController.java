@@ -28,7 +28,7 @@ public class EnergyController {
 	}
 
 	// ################ get Entire Tag ####################
-	@RequestMapping(value = "/gettimedata", method = RequestMethod.GET)
+	@RequestMapping(value = "/gettag", method = RequestMethod.GET)
 	public Iterable<EnergyTimeData> getTimeData() {
 		System.out.println("Get Entire Tag");
 		return energyService.getTimeData();
