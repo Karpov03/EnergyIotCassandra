@@ -16,12 +16,12 @@ public class EnergyService {
 	CassandraRepo cassandraRepo;
 
 	@Transactional
-	public Iterable<EnergyTimeData> getTag(List<Integer> tagid) {
+	public Iterable<EnergyTimeData> getTag(List<String> tagid) {
 		return cassandraRepo.findByTagid(tagid);
 	}
 
 	@Transactional
-	public Iterable<EnergyTimeData> getTagByDate(List<Integer> tagid,Long startdate,Long enddate) {
+	public Iterable<EnergyTimeData> getTagByDate(List<String> tagid,Long startdate,Long enddate) {
 		return cassandraRepo.findByTagidInAndTimestamps(tagid, startdate, enddate);
 	}
 

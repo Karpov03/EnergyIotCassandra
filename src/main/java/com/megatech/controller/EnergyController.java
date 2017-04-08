@@ -28,7 +28,7 @@ public class EnergyController {
 	}
 
 	// ################ get Entire Tag ####################
-	@RequestMapping(value = "/gettag", method = RequestMethod.GET)
+	@RequestMapping(value = "/getlist", method = RequestMethod.GET)
 	public Iterable<EnergyTimeData> getTimeData() {
 		System.out.println("Get Entire Tag");
 		return energyService.getTimeData();
@@ -36,7 +36,7 @@ public class EnergyController {
 
 	// ################ get Tag by Id ####################
 	@RequestMapping(value = "/gettag/{tagId}", method = RequestMethod.GET)
-	public Iterable<EnergyTimeData> getTagsById(@PathVariable List<Integer> tagId) {
+	public Iterable<EnergyTimeData> getTagsById(@PathVariable List<String> tagId) {
 		System.out.println("Get Tag By Given ID");
 		return energyService.getTag(tagId);
 	}
@@ -44,7 +44,7 @@ public class EnergyController {
 	// ################ get Tag Value between Dates by tagId
 	// ####################
 	@RequestMapping(value = "/gettag/{tagid}/{startdate}/{enddate}", method = RequestMethod.GET)
-	public Iterable<EnergyTimeData> getTagByDate(@PathVariable List<Integer> tagid, @PathVariable Long startdate,
+	public Iterable<EnergyTimeData> getTagByDate(@PathVariable List<String> tagid, @PathVariable Long startdate,
 			@PathVariable Long enddate) {
 		System.out.println("get Tag Value between Dates by tagid");
 		return energyService.getTagByDate(tagid, startdate, enddate);

@@ -6,14 +6,14 @@ import org.springframework.cassandra.core.PrimaryKeyType;
 import org.springframework.data.cassandra.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.mapping.Table;
 
-@Table(value = "energytimedata")
+@Table(value = "mclenergy")
 public class EnergyTimeData {
 
 	@PrimaryKeyColumn(name = "timestamps", type = PrimaryKeyType.PARTITIONED)
 	private Date timestamps;
 
 	@PrimaryKeyColumn(name = "tagid")
-	private Integer tagid;
+	private String tagid;
 
 	@PrimaryKeyColumn(name = "value")
 	private float value;
@@ -23,19 +23,29 @@ public class EnergyTimeData {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Date getEnergytime() {
+	
+	public Date getTimestamps() {
 		return timestamps;
 	}
 
-	public void setEnergytime(Date energytime) {
-		this.timestamps = energytime;
+	/**
+	 * @param timestamps the timestamps to set
+	 */
+	public void setTimestamps(Date timestamps) {
+		this.timestamps = timestamps;
 	}
 
-	public Integer getTagid() {
+	/**
+	 * @return the tagid
+	 */
+	public String getTagid() {
 		return tagid;
 	}
 
-	public void setTagid(Integer tagid) {
+	/**
+	 * @param tagid the tagid to set
+	 */
+	public void setTagid(String tagid) {
 		this.tagid = tagid;
 	}
 
@@ -47,7 +57,7 @@ public class EnergyTimeData {
 		this.value = value;
 	}
 
-	public EnergyTimeData(Date timestamps, Integer tagid, float value) {
+	public EnergyTimeData(Date timestamps, String tagid, float value) {
 		super();
 		this.timestamps = timestamps;
 		this.tagid = tagid;
