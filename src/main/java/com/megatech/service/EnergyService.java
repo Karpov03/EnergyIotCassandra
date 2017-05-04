@@ -21,7 +21,7 @@ public class EnergyService {
 	}
 
 	@Transactional
-	public Iterable<EnergyTimeData> getTagByDate(List<String> tagid,Long startdate,Long enddate) {
+	public List<EnergyTimeData> getTagByDate(List<String> tagid,Long startdate,Long enddate) {
 		return cassandraRepo.findByTagidInAndTimestamps(tagid, startdate, enddate);
 	}
 

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.megatech.JSONConverter;
 import com.megatech.model.EnergyTimeData;
 import com.megatech.service.EnergyService;
 
@@ -50,4 +51,21 @@ public class EnergyController {
 		return energyService.getTagByDate(tagid, startdate, enddate);
 	}
 
+	
+	@RequestMapping(value = "/getjson/{tagid}/{startdate}/{enddate}", method = RequestMethod.GET)
+	public String getTagsBetweenDates(@PathVariable List<String> tagid, @PathVariable Long startdate,
+			@PathVariable Long enddate) {
+		System.out.println("Get Assets between dates and by Asset ID and by Tag Id");
+		List<EnergyTimeData> results = energyService.getTagByDate(tagid, startdate, enddate);
+
+		String outputJson = JSONConverter.outputJson(results, tagid);
+
+		return outputJson;
+	}
+	
+	
+	
+	
+	
+	
 }
